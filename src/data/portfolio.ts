@@ -284,16 +284,16 @@ export const projects: Project[] = [
 export const educations: Education[] = [
   {
     id: 'master',
-    degree: 'Master en Informatique',
-    school: 'Université Paris-Saclay',
-    period: '2018 — 2020',
-    description: 'Spécialisation en Architecture Logicielle et Développement Web Avancé. Major de promotion.',
+    degree: 'Master en Intelligence Artificielle',
+    school: 'Université Amadou Hampathe Ba',
+    period: '2025 — 2026',
+    description: '',
   },
   {
     id: 'licence',
     degree: 'Licence Informatique',
-    school: 'Université Paris-Sud',
-    period: '2015 — 2018',
+    school: 'Université Amadou Hampathe Ba',
+    period: '2022 — 2025',
     description: 'Bases solides en algorithmique, réseaux, bases de données et développement logiciel.',
   },
 ];
