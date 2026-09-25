@@ -1,0 +1,56 @@
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
+
+export type Language = 'fr' | 'en';
+
+type TranslationKey =
+    | 'available'
+    | 'nav.home' | 'nav.about' | 'nav.skills' | 'nav.projects' | 'nav.education' | 'nav.contact' | 'nav.mobileMenu'
+    | 'hero.available' | 'hero.hello' | 'hero.developer' | 'hero.description' | 'hero.years' | 'hero.projects' | 'hero.apps' | 'hero.viewProjects' | 'hero.contact'
+    | 'about.tag' | 'about.title' | 'about.location' | 'about.lead' | 'about.p1' | 'about.p2'
+    | 'skills.arsenal' | 'skills.workshop' | 'skills.level' | 'skills.title'
+    | 'projects.tag' | 'projects.title' | 'projects.all' | 'projects.web' | 'projects.backend' | 'projects.mobile'
+    | 'education.tag' | 'education.title'
+    | 'contact.tag' | 'contact.title' | 'contact.email' | 'contact.location' | 'contact.available' | 'contact.description' | 'contact.send'
+    | 'footer.role' | 'footer.rights' | 'footer.top';
+
+const translations: Record<Language, Record<TranslationKey, string>> = {
+    fr: {
+        available: 'Code disponible', 'nav.home': 'Accueil', 'nav.about': 'À propos', 'nav.skills': 'Compétences', 'nav.projects': 'Projets', 'nav.education': 'Formation', 'nav.contact': 'Contact','nav.mobileMenu': 'Menu mobile',
+        'hero.available': 'Disponible pour des missions', 'hero.hello': 'Bonjour, je suis', 'hero.developer': 'Développeur', 'hero.description': 'Je conçois des expériences web & mobile modernes et performantes — du design à la mise en production.', 'hero.years': "Ans d'expérience", 'hero.projects': 'Projets réalisés', 'hero.apps': 'Apps publiées', 'hero.viewProjects': 'Voir mes projets', 'hero.contact': 'Me contacter',
+        'about.tag': 'Qui suis-je ?', 'about.title': 'À propos de moi', 'about.location': 'Dakar, Sénégal', 'about.lead': 'Développeur Mobile & Fullstack passionné, je transforme des idées en interfaces élégantes et performantes.', 'about.p1': "Avec plus de 2 ans d'expérience, j'ai travaillé sur des projets mobiles couvrant tout le cycle de développement, de l'architecture à la mise en production. Ma pratique du développement web me permet aussi de construire des solutions complètes quand un projet le nécessite, ou de dialoguer efficacement avec des équipes backend/frontend.", 'about.p2': "Curieux de nature, j'aime transformer des idées en produits fiables et progresser en me confrontant à de vrais problèmes techniques.",
+        'skills.arsenal': 'Mon arsenal', 'skills.workshop': 'Mon atelier', 'skills.level': 'Niveau de maîtrise', 'skills.title': 'Compétences & Stack',
+        'projects.tag': 'Mon travail', 'projects.title': 'Projets récents', 'projects.all': 'Tous', 'projects.web': 'Web', 'projects.backend': 'Backend', 'projects.mobile': 'Mobile',
+        'education.tag': 'Formation', 'education.title': 'Éducation & Certifications',
+        'contact.tag': 'Parlons-en', 'contact.title': 'Un projet en tête ?', 'contact.email': 'Email', 'contact.location': 'Localisation', 'contact.available': 'Disponible pour des projets ?', 'contact.description': 'Une idée, une question ou une opportunité ? Écrivez-moi et construisons quelque chose d’utile ensemble.', 'contact.send': 'Envoyer-moi un mail',
+        'footer.role': 'Développeur Mobile & Fullstack', 'footer.rights': '© 2025 Amdy Diop. Tous droits réservés.', 'footer.top': 'Retour en haut',
+    },
+    en: {
+        available: 'Code available', 'nav.home': 'Home', 'nav.about': 'About', 'nav.skills': 'Skills', 'nav.projects': 'Projects', 'nav.education': 'Education', 'nav.contact': 'Contact', 'nav.mobileMenu': 'Mobile menu',
+        'hero.available': 'Available for new missions', 'hero.hello': 'Hello, I am', 'hero.developer': 'Developer', 'hero.description': 'I build modern, high-performance web and mobile experiences, from design to production.', 'hero.years': 'Years of experience', 'hero.projects': 'Completed projects', 'hero.apps': 'Published apps', 'hero.viewProjects': 'View my projects', 'hero.contact': 'Contact me',
+        'about.tag': 'Who am I?', 'about.title': 'About me', 'about.location': 'Dakar, Senegal', 'about.lead': 'Passionate Mobile & Fullstack Developer, I turn ideas into elegant, high-performance interfaces.', 'about.p1': 'With over 2 years of experience, I have worked on mobile projects across the full development lifecycle, from architecture to production. My web development practice also allows me to build complete solutions when needed and collaborate effectively with backend and frontend teams.', 'about.p2': 'Naturally curious, I enjoy turning ideas into reliable products and improving by tackling real technical challenges.',
+        'skills.arsenal': 'My toolkit', 'skills.workshop': 'My workshop', 'skills.level': 'Skill level', 'skills.title': 'Skills & Stack',
+        'projects.tag': 'My work', 'projects.title': 'Recent projects', 'projects.all': 'All', 'projects.web': 'Web', 'projects.backend': 'Backend', 'projects.mobile': 'Mobile',
+        'education.tag': 'Education', 'education.title': 'Education & Certifications',
+        'contact.tag': "Let's talk", 'contact.title': 'Have a project in mind?', 'contact.email': 'Email', 'contact.location': 'Location', 'contact.available': 'Available for projects?', 'contact.description': 'An idea, a question or an opportunity? Write to me and let’s build something useful together.', 'contact.send': 'Send me an email',
+        'footer.role': 'Mobile & Fullstack Developer', 'footer.rights': '© 2025 Amdy Diop. All rights reserved.', 'footer.top': 'Back to top',
+    },
+};
+
+interface LanguageContextValue { language: Language; setLanguage: (language: Language) => void; t: (key: TranslationKey) => string; }
+const LanguageContext = createContext<LanguageContextValue | null>(null);
+
+export const LanguageProvider = ({ children }: { children: ReactNode }) => {
+    const [language, setLanguageState] = useState<Language>(() => (localStorage.getItem('portfolio-language') as Language) || 'fr');
+    const setLanguage = (nextLanguage: Language) => {
+        setLanguageState(nextLanguage);
+        localStorage.setItem('portfolio-language', nextLanguage);
+    };
+    useEffect(() => { document.documentElement.lang = language; }, [language]);
+    return <LanguageContext.Provider value={{ language, setLanguage, t: key => translations[language][key] }}>{children}</LanguageContext.Provider>;
+};
+
+export const useLanguage = () => {
+    const context = useContext(LanguageContext);
+    if (!context) throw new Error('useLanguage must be used within LanguageProvider');
+    return context;
+};
