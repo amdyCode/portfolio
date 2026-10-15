@@ -223,6 +223,21 @@ export const projects: Project[] = [
     linkLabel: 'Voir sur le Play Store',
   },
   {
+    id: 'chat-app',
+    title: 'Chat App',
+    description: 'Application mobile moderne de messagerie 1:1 en temps réel avec synchronisation Cloud Firestore, gestion d’état GetX, indicateur de frappe, présence en ligne et accusés de lecture.',
+    category: 'mobile',
+    badge: 'available',
+    badgeLabel: 'Code disponible',
+    techs: [
+      { name: 'Flutter', icon: 'flutter', color: '#54C5F8' },
+      { name: 'GetX', icon: 'Zap', color: '#9C27B0' },
+      { name: 'Firebase', icon: 'firebase', color: '#FFA000' },
+    ],
+    link: 'https://github.com/amdyCode/chat_app',
+    linkLabel: 'Voir le code',
+  },
+  {
     id: 'patient-portal',
     title: 'Patient Portal',
     description: 'Application mobile de gestion de dossiers médicaux permettant aux patients de consulter leurs rendez-vous et recommandations. Architecture de navigation avancée et UI/UX fluide.',

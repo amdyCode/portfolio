@@ -11,15 +11,16 @@ const BadgeIcon: React.FC<{ type: Project['badge'] }> = ({ type }) =>
 
 const ProjectCard: React.FC<{ project: Project; visible: boolean }> = ({ project, visible }) => {
   const { language } = useLanguage();
-  const englishDescription = {
+  const englishDescription: Record<string, string> = {
     'cv-gen-frontend': 'Dynamic CV creation application.',
     'cv-gen-backend': 'Backend for the dynamic CV creation application.',
     'quran-app': 'Application to read the Quran, already deployed on the Play Store.',
+    'chat-app': 'Modern real-time 1:1 messaging mobile app with Cloud Firestore sync, GetX state management, typing indicators, online presence, and read receipts.',
     'patient-portal': 'Mobile application for managing medical records, appointments and recommendations.',
     'printer-app': 'Hardware integration module for printing receipts on thermal Bluetooth printers.',
     'weather-magic': 'Asynchronous weather application with real-time forecasts and interactive mapping.',
     'chess-app': 'Interactive chess game with a custom rules engine and separated UI and business logic.',
-  }[project.id];
+  };
   return <div
     className={`project-card project-card-v2 glass-card reveal${visible ? ' visible' : ''}`}
     data-category={project.category}
@@ -31,7 +32,7 @@ const ProjectCard: React.FC<{ project: Project; visible: boolean }> = ({ project
       </span>
     </div>
     <h3 className="project-title-lg">{project.title}</h3>
-    <p className="project-desc-lead">{language === 'en' ? englishDescription : project.description}</p>
+    <p className="project-desc-lead">{language === 'en' ? (englishDescription[project.id] ?? project.description) : project.description}</p>
     <div className="project-tags-icons">
       {project.techs.map(tech => (
         <span key={tech.name} className="tech-pill-icon">
