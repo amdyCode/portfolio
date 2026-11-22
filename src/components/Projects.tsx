@@ -1,14 +1,13 @@
 import { useCallback, useState } from 'react';
-import { Code, Rocket, ArrowUpRight, Smartphone, Info } from 'lucide-react';
+import { Smartphone } from 'lucide-react';
 import { projects } from '../data/portfolio';
 import type { ProjectCategory, Project } from '../data/portfolio';
 import { useReveal } from '../hooks/useReveal';
 import DynIcon from './DynIcon';
 import ProjectModal from './ProjectModal';
+import ProjectCover from './ProjectCover';
 import { useLanguage } from '../context/LanguageContext';
 
-const BadgeIcon: React.FC<{ type: Project['badge'] }> = ({ type }) =>
-  type === 'deployed' ? <Rocket size={12} /> : <Code size={12} />;
 
 const englishDescription: Record<string, string> = {
   'cv-gen-frontend': 'Dynamic CV creation application.',
@@ -28,19 +27,14 @@ const ProjectCard: React.FC<{ project: Project; visible: boolean; onOpen: () => 
   const { language } = useLanguage();
   const en = language === 'en';
   return <div
-    className={`project-card project-card-v2 project-card-clickable glass-card reveal${visible ? ' visible' : ''}`}
+    className={`project-card  project-card-clickable glass-card reveal${visible ? ' visible' : ''}`}
     data-category={project.category}
     role="button"
     tabIndex={0}
     onClick={onOpen}
     onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpen(); } }}
   >
-    <div className="project-card-top">
-      <span className={`project-status-badge ${project.badge}`}>
-        <BadgeIcon type={project.badge} />
-        {en && project.badge === 'available' ? 'Code available' : project.badgeLabel}
-      </span>
-    </div>
+    
     <h3 className="project-title-lg">{project.title}</h3>
     <p className="project-desc-lead">{en ? (englishDescription[project.id] ?? project.description) : project.description}</p>
     <div className="project-tags-icons">
@@ -53,28 +47,7 @@ const ProjectCard: React.FC<{ project: Project; visible: boolean; onOpen: () => 
         </span>
       ))}
     </div>
-    <div className="project-card-actions">
-      <a
-        href={project.link}
-        className="project-link-btn"
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={e => e.stopPropagation()}
-        onKeyDown={e => e.stopPropagation()}
-      >
-        {en ? (project.linkLabel === 'Voir le code' ? 'View code' : project.linkLabel === 'Voir sur le Play Store' ? 'View on Play Store' : project.linkLabel) : project.linkLabel}
-        <ArrowUpRight size={14} />
-      </a>
-      <button
-        type="button"
-        className="project-details-btn"
-        onClick={e => { e.stopPropagation(); onOpen(); }}
-        onKeyDown={e => e.stopPropagation()}
-      >
-        <Info size={14} />
-        {en ? 'Details' : 'Détails'}
-      </button>
-    </div>
+    <ProjectCover projectId={project.id} title={project.title} />
   </div>;
 };
 

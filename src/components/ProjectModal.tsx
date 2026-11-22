@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { X, ArrowUpRight, Code, Rocket } from 'lucide-react';
+import { X, ArrowUpRight } from 'lucide-react';
 import type { Project } from '../data/portfolio';
 import { projectDetails } from '../data/projectDetails';
 import DynIcon from './DynIcon';
+import ProjectCover from './ProjectCover';
 import { useLanguage } from '../context/LanguageContext';
 
 interface Props {
@@ -45,16 +46,14 @@ const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
           <X size={18} />
         </button>
 
-        <span className={`project-status-badge ${project.badge}`}>
-          {project.badge === 'deployed' ? <Rocket size={12} /> : <Code size={12} />}
-          {en && project.badge === 'available' ? 'Code available' : project.badgeLabel}
-        </span>
         <h3 id="project-modal-title" className="modal-title">{project.title}</h3>
 
         <h4 className="modal-subtitle">{en ? 'Features' : 'Fonctionnalités'}</h4>
         <ul className="modal-list">
           {points.map(p => <li key={p}>{p}</li>)}
         </ul>
+
+        <ProjectCover projectId={project.id} title={project.title} size="modal" />
 
         <h4 className="modal-subtitle">Stack</h4>
         <div className="project-tags-icons">

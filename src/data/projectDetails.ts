@@ -8,13 +8,13 @@ export const projectDetails: Record<string, ProjectDetails> = {
   'cv-gen-frontend': {
     stack: ['Angular', 'TypeScript', 'SCSS'],
     fr: [
-      'Application de création de CV dynamiques avec aperçu en temps réel (ce CV a été généré avec l\'application)',
+      'Application de création de CV dynamiques avec aperçu en temps réel',
       'Remplissage rapide par import JSON avec validation du typage',
       'Personnalisation de la couleur du thème, photo et téléphone optionnels, mise en évidence des compétences selon l\'offre',
       'Export PDF via l\'API backend',
     ],
     en: [
-      'Dynamic CV builder with live preview (my own CV was generated with this app)',
+      'Dynamic CV builder with live preview',
       'Quick form filling through JSON import with type validation',
       'Custom theme color, optional photo and phone number, skills highlighted according to the job offer',
       'PDF export through the backend API',

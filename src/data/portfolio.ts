@@ -28,15 +28,12 @@ export interface TechCategory {
 }
 
 export type ProjectCategory = 'all' | 'web' | 'backend' | 'mobile';
-export type BadgeType = 'deployed' | 'available';
 
 export interface Project {
   id: string;
   title: string;
   description: string;
   category: Exclude<ProjectCategory, 'all'>;
-  badge: BadgeType;
-  badgeLabel: string;
   techs: TechPill[];
   link: string;
   linkLabel: string;
@@ -185,8 +182,6 @@ export const projects: Project[] = [
     title: 'Générateur de CV',
     description: 'Application de création de CV dynamiques.',
     category: 'web',
-    badge: 'available',
-    badgeLabel: 'Code disponible',
     techs: [
       { name: 'Angular', icon: 'angular', color: '#DD0031' },
       { name: 'Docker', icon: 'docker', color: '#2496ED' },
@@ -199,8 +194,6 @@ export const projects: Project[] = [
     title: 'Générateur de CV — API',
     description: 'Backend de l\'application de création de CV dynamiques.',
     category: 'backend',
-    badge: 'available',
-    badgeLabel: 'Code disponible',
     techs: [
       { name: 'Node.js Express', icon: 'nodedotjs', color: '#68A063' },
       { name: 'Docker', icon: 'docker', color: '#2496ED' },
@@ -210,11 +203,9 @@ export const projects: Project[] = [
   },
   {
     id: 'quran-app',
-    title: 'Quran App',
+    title: 'QuranPlus',
     description: 'Application pour lire le Coran, déjà déployée sur le Play Store.',
     category: 'mobile',
-    badge: 'deployed',
-    badgeLabel: 'Déployé',
     techs: [
       { name: 'Flutter', icon: 'flutter', color: '#54C5F8' },
       { name: 'Dart', icon: 'dart', color: '#01579B' },
@@ -227,8 +218,6 @@ export const projects: Project[] = [
     title: 'Chat App',
     description: 'Application mobile moderne de messagerie 1:1 en temps réel avec synchronisation Cloud Firestore, gestion d’état GetX, indicateur de frappe, présence en ligne et accusés de lecture.',
     category: 'mobile',
-    badge: 'available',
-    badgeLabel: 'Code disponible',
     techs: [
       { name: 'Flutter', icon: 'flutter', color: '#54C5F8' },
       { name: 'GetX', icon: 'Zap', color: '#9C27B0' },
@@ -242,8 +231,6 @@ export const projects: Project[] = [
     title: 'Spotify Clone',
     description: 'Clone mobile de Spotify : accueil, recherche, bibliothèque, lecteur plein écran avec file d\'attente, favoris et paroles défilantes.',
     category: 'mobile',
-    badge: 'available',
-    badgeLabel: 'Code disponible',
     techs: [
       { name: 'Flutter', icon: 'flutter', color: '#54C5F8' },
       { name: 'GetX', icon: 'Zap', color: '#9C27B0' },
@@ -257,8 +244,6 @@ export const projects: Project[] = [
     title: 'Instagram Clone',
     description: 'Application mobile reproduisant les fonctionnalités clés d\'Instagram, connectée à une API GraphQL personnalisée (feed, stories, profils, follow).',
     category: 'mobile',
-    badge: 'available',
-    badgeLabel: 'Code disponible',
     techs: [
       { name: 'Flutter', icon: 'flutter', color: '#54C5F8' },
       { name: 'Riverpod', icon: 'Layers', color: '#00B8D4' },
@@ -272,8 +257,6 @@ export const projects: Project[] = [
     title: 'Instagram API',
     description: 'API backend GraphQL modulaire et hautement typée (Apollo Server, Prisma, PostgreSQL) avec authentification JWT, feed, likes et commentaires.',
     category: 'backend',
-    badge: 'available',
-    badgeLabel: 'Code disponible',
     techs: [
       { name: 'Node.js', icon: 'nodedotjs', color: '#68A063' },
       { name: 'GraphQL', icon: 'graphql', color: '#E10098' },
@@ -288,8 +271,6 @@ export const projects: Project[] = [
     title: 'Patient Portal',
     description: 'Application mobile de gestion de dossiers médicaux permettant aux patients de consulter leurs rendez-vous et recommandations. Architecture de navigation avancée et UI/UX fluide.',
     category: 'mobile',
-    badge: 'available',
-    badgeLabel: 'Code disponible',
     techs: [
       { name: 'Flutter (Dart)', icon: 'flutter', color: '#54C5F8' },
       { name: 'Firebase', icon: 'firebase', color: '#FFA000' },
@@ -302,8 +283,6 @@ export const projects: Project[] = [
     title: 'Printer App',
     description: 'Module d\'intégration matérielle pour l\'impression de reçus sur imprimante thermique via Bluetooth, avec gestion avancée des permissions.',
     category: 'mobile',
-    badge: 'available',
-    badgeLabel: 'Code disponible',
     techs: [
       { name: 'Flutter (Dart)', icon: 'flutter', color: '#54C5F8' },
       { name: 'Bluetooth SDK', icon: 'Bluetooth', color: '#0082FC' },
@@ -316,8 +295,6 @@ export const projects: Project[] = [
     title: 'Weather Magic',
     description: 'Application météo asynchrone offrant des prévisions en temps réel, avec cartographie interactive, géolocalisation et visualisation de données.',
     category: 'mobile',
-    badge: 'available',
-    badgeLabel: 'Code disponible',
     techs: [
       { name: 'Flutter (Dart)', icon: 'flutter', color: '#54C5F8' },
       { name: 'OpenWeather API', icon: 'CloudSun', color: '#EB6E4B' },
@@ -331,8 +308,6 @@ export const projects: Project[] = [
     title: 'Chess App',
     description: 'Jeu d\'échecs interactif avec moteur de règles personnalisé (échec, mat, pat, chronomètres), architecture frontend avec séparation stricte UI / logique métier.',
     category: 'web',
-    badge: 'available',
-    badgeLabel: 'Code disponible',
     techs: [
       { name: 'Angular', icon: 'angular', color: '#DD0031' },
     ],
