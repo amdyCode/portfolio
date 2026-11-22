@@ -37,7 +37,7 @@ const Hero: React.FC = () => {
 
   // Counter animation
   useEffect(() => {
-    const targets = { exp: 2, projects: 5, apps: 1 };
+    const targets = { exp: 2, projects: 10, apps: 1 };
     const steps = 40;
     let step = 0;
     const timer = setInterval(() => {
